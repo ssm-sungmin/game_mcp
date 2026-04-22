@@ -1,11 +1,11 @@
 services:
   - type: web
     name: steam-game-mcp
-    runtime: docker
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
     envVars:
       - key: MCP_TRANSPORT
         value: streamable-http
       - key: PORT
-        value: 8000
+        value: 10000
