@@ -58,8 +58,10 @@ if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
 
     if transport == "streamable-http":
-        # 배포 환경 (Railway, Render 등)
-        mcp.run(transport="streamable-http", host="0.0.0.0", port=port)
+        # 배포 환경 (Render 등) — uvicorn으로 직접 실행
+        import uvicorn
+        app = mcp.streamable_http_app()
+        uvicorn.run(app, host="0.0.0.0", port=port)
     else:
         # 로컬 환경 (Claude Code stdio)
         mcp.run()
